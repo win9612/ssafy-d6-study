@@ -25,10 +25,10 @@ public class Main {
 		for (int i = 1; i <= 3; i++) {
 			if (position[i] == 1) {
 				System.out.println(i);
-        return;
+       				 return;
 			}
 		}
-    // 이 문장은 빼도 됨
+   		 // 이 문장은 빼도 됨
 		// System.out.println("-1");
 	} // end main
 } // end class
