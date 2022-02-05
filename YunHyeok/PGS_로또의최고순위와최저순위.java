@@ -4,17 +4,48 @@ class Solution {
         int equalCnt = 0;
         
         for(int i=0; i<6; i++){
-            if(lottos[i] == 0) zeroCnt+=1; // 0 Ä«¿îÆ®
+            if(lottos[i] == 0) zeroCnt+=1; // 0 ì¹´ìš´íŠ¸
             for(int j=0; j<6; j++){
-                if(lottos[i] == win_nums[j]) equalCnt += 1; // µÎ ·Î¶Ç ºñ±³ ÈÄ °°Àº °æ¿ì
+                if(lottos[i] == win_nums[j]) equalCnt += 1; // ë‘ ë¡œë˜ ë¹„êµ í›„ ê°™ì€ ê²½ìš°
             }
         }
         
         int max = 7 - (equalCnt + zeroCnt);
         int min = 7 - equalCnt;
-        if(max==7) max = 6; // lottos¹è¿­¿¡ 0ÀÌ ¾ø°í ´Ù Æ²¸° °æ¿ì
-        if(min==7) min = 6; // lottos¹è¿­ÀÌ ´Ù 0ÀÎ °æ¿ì
+        if(max==7) max = 6; // lottosë°°ì—´ì— 0ì´ ì—†ê³  ë‹¤ í‹€ë¦° ê²½ìš°
+        if(min==7) min = 6; // lottosë°°ì—´ì´ ë‹¤ 0ì¸ ê²½ìš°
   
         return new int[] {max, min};
+    }
+}
+
+// ë‹¤ë¥¸ ì‚¬ëžŒ í’€ì´
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] lottos, int[] win_nums) {
+        Map<Integer, Boolean> map = new HashMap<Integer, Boolean>();
+        int zeroCnt = 0;
+        
+        for(int lotto : lottos){
+            if(lotto == 0){
+                zeroCnt++;
+                continue;
+            }
+            map.put(lotto, false);
+        }
+        
+        int sameCnt = 0;
+        for(int winNum : win_nums){
+            if(map.containsKey(winNum)) sameCnt++;
+            System.out.println(map.containsKey(winNum));
+        }
+        
+        int maxRank = 7 - (sameCnt + zeroCnt);
+        int minRank = 7 - sameCnt;
+        if(maxRank == 7) maxRank = 6;
+        if(minRank == 7) minRank = 6;
+
+        return new int[] {maxRank, minRank};
     }
 }
