@@ -1,12 +1,12 @@
 import java.io.*;
 import java.util.*;
 
+// https://www.acmicpc.net/problem/1182
 public class Main {
 
 	private static int s, n, cnt;
 	private static int[] arr;
 
-  // https://www.acmicpc.net/problem/1182
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
