@@ -28,18 +28,23 @@ public class Main {
 		System.out.println(min);
 	}
 
+	private static int getScore() {
+		int ans = 0;
+		arr[n] = arr[0];
+		for (int i = 0; i < n; i++) {
+			int tmp = cost[arr[i]][arr[i + 1]];
+			if (tmp == 0)
+				return Integer.MAX_VALUE;
+			else
+				ans += tmp;
+		}
+		return ans;
+	}
+
 	private static void go(int cnt) {
 		if (cnt >= n) {
-			int ans = 0;
-			arr[n] = arr[0];
-			for (int i = 0; i < n; i++) {
-				int tmp = cost[arr[i]][arr[i + 1]];
-				if (tmp == 0)
-					return;
-				else
-					ans += tmp;
-			}
-			min = Math.min(min, ans);
+			min = Math.min(min, getScore());
+			return;
 		}
 
 		for (int i = 0; i < n; i++) {
