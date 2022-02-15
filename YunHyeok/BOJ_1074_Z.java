@@ -7,6 +7,9 @@ import java.util.StringTokenizer;
 
 public class BOJ_1074_Z {
 	static int N, r, c, cnt;
+	static int[] dy = {0, 0, 1, 1};
+	static int[] dx = {0, 1, 0, 1};
+	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,29 +24,15 @@ public class BOJ_1074_Z {
 	}
 	static void dfs(int n, int y, int x) {
 		if(n==2) {
-			if(y==r && x== c) {
-				System.out.println(cnt);
-				return;
+			for(int i=0; i<4; i++) {
+				int yy = y + dy[i];
+				int xx = x + dx[i];
+				if(yy == r && xx == c) {
+					System.out.println(cnt);
+					System.exit(0);
+				}
+				cnt++;
 			}
-			cnt+=1;
-			
-			if(y==r && x+1==c) {
-				System.out.println(cnt);
-				return;
-			}
-			cnt+=1;
-			
-			if(y+1==r && x==c) {
-				System.out.println(cnt);
-				return;
-			}
-			cnt+=1;
-			
-			if(y+1==r && x+1==c) {
-				System.out.println(cnt);
-				return;
-			}
-			cnt+=1;
 			return;
 		}
 		
