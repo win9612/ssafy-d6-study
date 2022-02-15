@@ -9,14 +9,14 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
 		int n = Integer.parseInt(st.nextToken());
-		long r = Integer.parseInt(st.nextToken());
-		long c = Integer.parseInt(st.nextToken());
+		int r = Integer.parseInt(st.nextToken());
+		int c = Integer.parseInt(st.nextToken());
 
 		go(r, c, n, 0);
 
 	}
 
-	private static void go(long i, long j, int n, int add) {
+	private static void go(int i, int j, int n, int add) {
 		if (n == 1) {
 			System.out.println(add + 2 * i + j);
 			return;
