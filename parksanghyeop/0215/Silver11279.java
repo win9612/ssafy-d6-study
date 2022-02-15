@@ -23,10 +23,11 @@ public class Silver11279 {
 			if(current!=0) {
 				q.add(current*-1); 
 			} else {
-				if(q.isEmpty())
-					System.out.println(0);
-				else
-					System.out.println(q.poll()*-1);
+				System.out.println(q.isEmpty() ? 0 : q.poll()*-1);
+//				if(q.isEmpty())
+//					System.out.println(0);
+//				else
+//					System.out.println(q.poll()*-1);
 			}
 		}
 		
