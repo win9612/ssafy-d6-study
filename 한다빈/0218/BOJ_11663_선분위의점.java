@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_11663_선분위의점 {
-    static int count;
+    static int count = 0;
     static int line[];
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,16 +19,17 @@ public class BOJ_11663_선분위의점 {
         }
 
         for (int i = 0; i < M; i++) {
-            count = 0;
+            count =0;
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
-            line = new int[end+1];
-            for (int j = start; j <= end; j++) {
-                line[j] = j;
+
+            line = new int[end-start+1];
+            for (int j = 0; j < line.length; j++) {
+                line[j] = start++;
             }
             for (int j = 0; j < N; j++) {
-                binarySearch(start,end,compareSpot[j]);
+                binarySearch(0, line.length-1, compareSpot[j]);
             }
             System.out.println(count);
         }
