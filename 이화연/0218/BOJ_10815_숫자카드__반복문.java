@@ -29,18 +29,13 @@ public class BOJ_10815_숫자카드__반복문 {
 				int mid = (start + end) / 2; // 중간값
 				if (num == numbers[mid]) { // input값이 numbers의 중간값과 같다면
 					result[m] = 1; // 가지고 있으니까 1
-					break;
 				} else if (num < numbers[mid]) {
 					end = mid - 1; // 중간값보다 작으면 중간값 아래에서 비교
 				} else if (num > numbers[mid]) {
 					start = mid + 1; // 중간값보다 크면 중간값 위에서 비교
-				} else {
-					result[m] = 0; // 가지고 있지 않으니까 0
-					break;
 				}
 			}
 			System.out.print(result[m] + " ");
 		}
 	}
-
 }
