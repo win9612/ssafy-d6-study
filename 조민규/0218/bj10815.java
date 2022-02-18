@@ -31,11 +31,11 @@ public class bj10815 {
 
         Arrays.sort(sanggeun); // 이분탐색을 위해 탐색할 배열 오름차순 정렬
         for(int i = 0 ; i < M ; i++){
-            searchRecursive(i);
+            binarySearch(i);
         }
     }
 
-    public static void searchRecursive(int key){
+    public static void binarySearch(int key){
         int start = 0;
         int end = N;
         int half = end / 2;
