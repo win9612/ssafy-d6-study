@@ -23,6 +23,7 @@ public class Main {
 				on[j] = !on[j];
 			}
 		}
+		
 		System.out.println(cnt);
 	}
 }
