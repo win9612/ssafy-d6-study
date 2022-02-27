@@ -15,6 +15,8 @@
 ### 공부 정리
 https://oil-liquid-bef.notion.site/3d6c70b3a86f450fbcf1ce2398d33560
 
+### 모각코 스터디
+https://oil-liquid-bef.notion.site/aecf35182a1c45158727e0894069c679
 
 
 <br />
