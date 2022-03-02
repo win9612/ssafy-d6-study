@@ -29,12 +29,6 @@ public class BOJ_3190_뱀 {
 			int x = Integer.parseInt(st.nextToken());
 			map[y-1][x-1] = 1; // 사과는 1로 두기
 		}
-//		for(int i=0; i<N; i++) {
-//			for(int j=0; j<N; j++) {
-//				System.out.print(map[i][j] + " ");
-//			}
-//			System.out.println();
-//		}
 		
 		K = Integer.parseInt(br.readLine());
 		for(int i=0; i<K; i++) {
@@ -42,7 +36,7 @@ public class BOJ_3190_뱀 {
 			int sec = Integer.parseInt(st.nextToken());
 			char move = st.nextToken().charAt(0);
 			dp.add(new DPoint(sec, move));
-		}
+		}// dp큐에 방향 변환 정보를 담기
 		
 		
 		
@@ -54,7 +48,7 @@ public class BOJ_3190_뱀 {
 			int y = i + dy[dir];
 			int x = j + dx[dir];
 			
-			if(check(y, x)) // 벽도 안부딪히고 몸통이랑도 안부딪히면
+			if(check(y, x)) // 벽이랑 몸통이랑 부딪히면 끝
 				break;
 			
 			if(map[y][x] == 1) { // 앞에 사과라면
@@ -62,14 +56,13 @@ public class BOJ_3190_뱀 {
 				q.offerLast(new Point(y, x));
 			}else { // 사과가 아니라면
 				q.offerLast(new Point(y, x)); // 머리 붙이기
-				q.pollFirst(); // 꼬리자르기
+				q.pollFirst(); // 꼬리 자르기
 			}
 			
 			i = y;
 			j = x; 
 			
-			if(!dp.isEmpty() && sec == dp.peek().sec) {
-//				System.out.println("####" + dp.peek().sec);
+			if(!dp.isEmpty() && sec == dp.peek().sec) { // 비어있지 않고 현재 초와 입력받은 dp큐의 초가 같다면
 				DPoint dpoint = dp.poll();
 				if(dpoint.move == 'D') { // 오른쪽으로 가야한다면
 					dir++;
@@ -98,7 +91,7 @@ public class BOJ_3190_뱀 {
 		return false;
 	}
 	
-	static class Point{
+	static class Point{ // 좌표
 		int y, x;
 		Point(int y, int x){
 			this.y = y;
@@ -106,7 +99,7 @@ public class BOJ_3190_뱀 {
 		}
 	}
 	
-	static class DPoint{
+	static class DPoint{ // 방향 변환 정보
 		int sec;
 		char move;
 		DPoint(int sec, char move){
