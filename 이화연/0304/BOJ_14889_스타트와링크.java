@@ -30,16 +30,7 @@ public class BOJ_14889_스타트와링크 {
 
 	public static void comb(int idx, int cnt) {
 		if (cnt == N / 2) { // N/2명 골랐을 때 리턴
-			ArrayList<Integer> start = new ArrayList<Integer>();
-			ArrayList<Integer> link = new ArrayList<Integer>();
-			for (int i = 0; i < N; i++) {
-				if (visited[i]) { // 선택한 번호는 start에 넣고
-					start.add(i);
-				} else { // 선택하지 않은 번호는 link에 넣기
-					link.add(i);
-				}
-			}
-			min = Math.min(min, Math.abs(add(start) - add(link)));
+			min = Math.min(min, Math.abs(add()));
 			return;
 		}
 
@@ -53,14 +44,19 @@ public class BOJ_14889_스타트와링크 {
 		comb(idx + 1, cnt);
 	}
 
-	public static int add(ArrayList<Integer> list) {
-		int sum = 0;
-		for (int i = 0; i < list.size() - 1; i++) { // ij, ji 능력치 더하기
-			for (int j = i + 1; j < list.size(); j++) {
-				sum += map[list.get(i)][list.get(j)] + map[list.get(j)][list.get(i)];
+	public static int add() {
+		int start =0, link = 0;
+		for (int i = 0; i < N; i++) {
+			for(int j=i; j<N; j++) {
+				if(visited[i] && visited[j]) {
+					start += map[i][j] + map[j][i];
+				}
+				if(!visited[i] && !visited[j]) {
+					link += map[i][j] + map[j][i];						
+				}
 			}
 		}
-		return sum;
+		return Math.abs(start-link);
 	}
 
 }
