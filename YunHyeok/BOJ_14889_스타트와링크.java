@@ -72,3 +72,63 @@ public class BOJ_14889_스타트와링크 {
 		return Math.abs(aSum-bSum);
 	}
 }
+
+
+//두번째 풀이
+public class BOJ_14889_스타트와링크2 {
+	static int N;
+	static int min = Integer.MAX_VALUE;
+	static int[][] array;
+	static boolean[] visited;
+	
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		
+		N = Integer.parseInt(br.readLine());
+		array = new int[N][N];
+		visited = new boolean[N];
+		
+		for(int i=0; i<N; i++) {
+			st = new StringTokenizer(br.readLine());
+			for(int j=0; j<N; j++) {
+				array[i][j] = Integer.parseInt(st.nextToken());
+			}
+		}
+		
+		dfs(0, 0);
+		System.out.println(min);
+	}
+	
+	static void dfs(int idx, int cnt) {
+		if(cnt == N/2) {
+			int ans = diff();
+			min = Math.min(min, ans);
+			return;
+		}
+		if(idx>=N)
+			return;
+		
+		visited[idx] = true;
+		dfs(idx+1, cnt+1);
+		visited[idx] = false;
+		dfs(idx+1, cnt);
+	}
+	
+	static int diff() {
+		int teamA = 0;
+		int teamB = 0;
+		
+		for(int i=0; i<N; i++) {
+			for(int j=i; j<N; j++) {
+				if(visited[i] && visited[j])
+					teamA += array[i][j] + array[j][i];
+				else if(!visited[i] && !visited[j])
+					teamB += array[i][j] + array[j][i];
+			}
+		}
+		
+		return Math.abs(teamA - teamB);
+	}
+
+}
