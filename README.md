@@ -8,12 +8,16 @@
 
 # 6반! 알고리즘 스터디 📝
 
-## 문제 목록
-https://deadpan-school-2b5.notion.site/fedc94222cb94263b2236a5ae5ab72d4?v=a6f19c47d2f24dde8f82a555f772db25
-
-
-
 **목표는 삼성 역량테스트 통과?!** 물론 그 후로도 쭉 공부..🥰
+
+<br>
+
+### 공부 정리
+https://oil-liquid-bef.notion.site/3d6c70b3a86f450fbcf1ce2398d33560
+
+### 모각코 스터디
+https://oil-liquid-bef.notion.site/aecf35182a1c45158727e0894069c679
+
 
 <br />
 <br />
