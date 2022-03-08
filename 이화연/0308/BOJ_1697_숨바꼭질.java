@@ -14,32 +14,34 @@ public class BOJ_1697_숨바꼭질 {
 		int N = Integer.parseInt(st.nextToken()); // 수빈이 현재 점
 		int K = Integer.parseInt(st.nextToken()); // 수빈이가 이동해야 할 점
 
-		int abs = Math.abs(N - K);
-		boolean[] visited = new boolean[100001]; // 0 < N <= 100,000
+		int[] visited = new int[100001]; // 0 < N <= 100,000
+
 		Queue<Integer> queue = new LinkedList<Integer>();
 		queue.offer(N); // 수빈이 현재 점 넣기
-		visited[N] = true; // 방문 처리
 
-		int time = 0;
 		while (!queue.isEmpty()) {
-
 			int current = queue.poll();
-			System.out.println("current : " + current);
 
 			if (current == K) { // current가 K면 탈출
-				break;
+				System.out.println(visited[current]);
+				return;
 			}
 
-			if (Math.abs(current - K) <= abs) {
-				queue.offer(current * 2); // 순간 이동
-				queue.offer(current - 1); // 걷기
+			if (current - 1 >= 0 && visited[current - 1] == 0) { // N-1
+				visited[current - 1] = visited[current] + 1;
+				queue.offer(current - 1);
+			}
+			if (current + 1 <= 100000 && visited[current + 1] == 0) { // N+1
+				visited[current + 1] = visited[current] + 1;
 				queue.offer(current + 1);
 			}
-//			time++;
-//			System.out.println(time);
+			if (current * 2 <= 100000 && visited[current * 2] == 0) { // N*2
+				visited[current * 2] = visited[current] + 1;
+				queue.offer(current * 2);
+			}
+
 		}
 
-		System.out.println(time);
 	}
 
 }
