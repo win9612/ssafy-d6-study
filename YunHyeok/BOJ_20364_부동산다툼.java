@@ -7,71 +7,90 @@ import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+
 public class BOJ_20364_부동산다툼 {
-	static int N, Q; // 땅개수, 오리수
-	static List<List<Integer>> list = new ArrayList<>();
+	static int Q, N;
+	static List<List<Integer>> list;
 	static boolean[] visited;
+	static StringBuilder sb = new StringBuilder();
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		N = Integer.parseInt(st.nextToken());
-		Q = Integer.parseInt(st.nextToken());
+		Q = Integer.parseInt(st.nextToken()); // 땅 개수
+		N = Integer.parseInt(st.nextToken()); // 오리 수
 		
-		visited = new boolean[N+1];
-		for(int i=0; i<N; i++) {
+		list = new ArrayList<>();
+		visited = new boolean[Q+1];
+		for(int i=0; i<=Q; i++) {
 			list.add(new ArrayList<>());
 		}
 		
-		for(int i=1; i<=N; i++) {
-			if(2*i <= N)
+		// 주어진 이진트리를 간선리스트로 만들기
+		for(int i=1; i<=Q; i++) {
+			if(i>1) {
+				if(i % 2 == 0)
+					list.get(i).add(i/2);
+				else
+					list.get(i).add(i/2);
+			}
+			
+			if(2*i <= Q)
 				list.get(i).add(2*i);
-			if(2*i+1 <= N)
+			if(2*i+1 <= Q)
 				list.get(i).add(2*i+1);
 		}
 		
+//		for(List li : list) {
+//			System.out.println(li);
+//		}
 		
-		for(int i=0; i<Q; i++) {
-			int end = Integer.parseInt(br.readLine());
-			
-			System.out.println(bfs(1, end));
+		for(int i=0; i<N; i++) {
+			bfs(Integer.parseInt(br.readLine()));
 		}
+		System.out.println(sb);
 		
 	}
-	static int bfs(int start, int end) {
+	static void bfs(int target) {
 		Queue<Integer> q = new LinkedList<>();
-		q.offer(start);
-
-		while(!q.isEmpty()) {
-			int v = q.poll();
-			
-			if(v == end && v > 1) {
-				for(int i=0; i<list.size(); i++) {
-					for(int j=0; j<list.get(i).size(); j++) {
-						if(list.get(i).get(j) == end) list.get(i).remove(j);
-					}
-				}
-				
-				return 0;
-			}
-			
-			for(int d=0; d<2; d++) {
-				int k=0;
-				if(d==0) {
-					if(v*2<=N) k = v*2;
-				}else {
-					if(v*2+1<=N) k = v*2+1;
-				}
-				
-				for(int i=0; i<list.get(v).size(); i++) {
-					if(k == list.get(v).get(i)) q.offer(k);
-				}
-			}
-		}
+		q.offer(target);
 		
-		return end/2;
-	}
-	
-}
+		while(!q.isEmpty()) {
+			int curr = q.poll();
 
+			if(visited[curr]) {
+				sb.append(curr+"\n");
+				break;
+			}
+			
+			//1 방문시 그 이후 방문하는 땅은 다 1로 나와야 되는거 아닌지..
+			/*
+			 6 4
+			 1
+			 2
+			 3
+			 4
+			 */
+//			if(curr == 1) {
+//				sb.append(0 + "\n");
+//				visited[target] = true;
+//			}
+			
+			if(curr == 1 && target == 1) {
+				sb.append(0 + "\n");
+			}else if(curr == 1 && target != 1) {
+				sb.append(0 + "\n");
+				visited[target] = true;
+			}
+			
+
+			for(Integer next : list.get(curr)) {
+				if(next < curr) {
+					q.offer(next);
+				}
+			}
+		
+		}
+	}
+}
