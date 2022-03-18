@@ -29,7 +29,7 @@ public class BOJ_17073_나무위의빗물 {
 			list[to].add(from);
 		}
 
-		int cnt = 0; // 자식 없는 노드 개수
+		int cnt = 0; // 자식 없는 노드 개수 
 		for (int i = 2; i <= N; i++) { // 루트의 사이즈가 1인경우가 있기 때문에 2부터 시작해야 함
 			if (list[i].size() == 1) { // 사이즈가 1인 것은 자식이 없는 것
 				cnt++;
