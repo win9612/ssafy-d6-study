@@ -24,7 +24,6 @@ public class BOJ_18429_근손실 {
         permutation(0,500);
         System.out.println(count);
     }
-
     public static void permutation(int idx,int totalWeight){
         if(idx == N){
             count++;
