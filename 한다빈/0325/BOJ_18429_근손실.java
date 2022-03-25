@@ -20,7 +20,6 @@ public class BOJ_18429_근손실 {
         for (int i = 0; i < N; i++) {
             kits[i] = Integer.parseInt(st.nextToken());
         }
-
         permutation(0,500);
         System.out.println(count);
     }
