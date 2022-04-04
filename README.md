@@ -76,7 +76,7 @@ https://oil-liquid-bef.notion.site/aecf35182a1c45158727e0894069c679
 ## ✅ 참여자와 경험치
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/parksanghyeop"><img src="https://avatars.githubusercontent.com/u/48915018?v=4" width="100px;" alt=""/><br /><sub><b>상협</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/parksanghyeop"><img src="https://avatars.githubusercontent.com/u/48915018?v=4" width="100px;" alt=""/><br /><sub><b>상협</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/40" /></sub></a><br /></td>
     <td align="center"><a href="https://github.com/win9612"><img src="https://avatars.githubusercontent.com/u/64128134?v=4" width="100px;" alt=""/><br /><sub><b>민규</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
     <td align="center"><a href="https://github.com/LeeHwayeon"><img src="https://avatars.githubusercontent.com/u/33210124?v=4" width="100px;" alt=""/><br /><sub><b>화연</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
     <td align="center"><a href="https://github.com/parksanghyeop"><img src="https://avatars.githubusercontent.com/u/84266499?v=4" width="100px;" alt=""/><br /><sub><b>갑경</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
