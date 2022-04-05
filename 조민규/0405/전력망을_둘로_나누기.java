@@ -1,23 +1,21 @@
 package programmers;
 
-
 public class 전력망을_둘로_나누기 {
 
     static int V, E; // 정점 수, 간선 수
-    static boolean[] counted; // dfs로 탐색한 정점인지 표시
+    static int[][] adjMatrix;
+    static boolean[] visited; // dfs로 탐색한 정점인지 표시
     static int count; // dfs로 탐색하며 센 간선 개수
 
     public static void dfs(int[][] adjMatrix, boolean[] visited, int current){
-        visited[current] = true;
-
-        if(counted[current]){ // 만약 간선을 이미 센 정점이라면
+        if(visited[current]){ // 만약 간선을 이미 센 정점이라면
             return;
         }
         count += 1; // 간선 수 + 1
-        counted[current] = true;
+        visited[current] = true;
 
         for(int j = 0 ; j < V ; j++){
-            if(!visited[j] && adjMatrix[current][j] != 0){
+            if(adjMatrix[current][j] != 0){
                 dfs(adjMatrix, visited, j);
             }
         }
@@ -31,9 +29,8 @@ public class 전력망을_둘로_나누기 {
 
         for(int e = 0 ; e < E ; e++){ // 모든 간선을 다 하나씩 빼봄
             // 인접 매트릭스 입력 과정
-            int[][] adjMatrix = new int[V][V];
-            boolean[] visited = new boolean[V];
-            counted = new boolean[V];
+            adjMatrix = new int[V][V];
+            visited = new boolean[V];
 
             for(int i = 0 ; i < E ; i++){
                 if(i != e){ // 현재 간선을 빼고 나머지 간선들을 인접행렬에 입력한다.
@@ -50,7 +47,6 @@ public class 전력망을_둘로_나누기 {
             for(int i = 1 ; i < V ; i++){
                 count = 0;
                 dfs(adjMatrix,visited,i);
-
                 if(count > 0){
                     counts[countsIdx++] = count;
                 }
