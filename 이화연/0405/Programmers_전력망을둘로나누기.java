@@ -11,7 +11,7 @@ public class Programmers_전력망을둘로나누기 {
 	}
 
 	public static int solution(int n, int[][] wires) {
-		int answer = 987654321;
+		int answer = n;
 		int[][] map = new int[n + 1][n + 1];
 
 		for (int i = 0; i < n - 1; i++) {
