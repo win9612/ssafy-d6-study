@@ -8,12 +8,16 @@
 
 # 6반! 알고리즘 스터디 📝
 
-## 문제 목록
-https://deadpan-school-2b5.notion.site/fedc94222cb94263b2236a5ae5ab72d4?v=a6f19c47d2f24dde8f82a555f772db25
-
-
-
 **목표는 삼성 역량테스트 통과?!** 물론 그 후로도 쭉 공부..🥰
+
+<br>
+
+### 공부 정리
+https://oil-liquid-bef.notion.site/3d6c70b3a86f450fbcf1ce2398d33560
+
+### 모각코 스터디
+https://oil-liquid-bef.notion.site/aecf35182a1c45158727e0894069c679
+
 
 <br />
 <br />
@@ -72,13 +76,14 @@ https://deadpan-school-2b5.notion.site/fedc94222cb94263b2236a5ae5ab72d4?v=a6f19c
 ## ✅ 참여자와 경험치
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/parksanghyeop"><img src="https://avatars.githubusercontent.com/u/48915018?v=4" width="100px;" alt=""/><br /><sub><b>상협</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/parksanghyeop"><img src="https://avatars.githubusercontent.com/u/48915018?v=4" width="100px;" alt=""/><br /><sub><b>상협</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/40" /></sub></a><br /></td>
     <td align="center"><a href="https://github.com/win9612"><img src="https://avatars.githubusercontent.com/u/64128134?v=4" width="100px;" alt=""/><br /><sub><b>민규</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
     <td align="center"><a href="https://github.com/LeeHwayeon"><img src="https://avatars.githubusercontent.com/u/33210124?v=4" width="100px;" alt=""/><br /><sub><b>화연</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/parksanghyeop"><img src="https://avatars.githubusercontent.com/u/84266499?v=4" width="100px;" alt=""/><br /><sub><b>갑경</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/JoYunHyeok"><img src="https://avatars.githubusercontent.com/u/59010218?v=4" width="100px;" alt=""/><br /><sub><b>윤혁</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/parksanghyeop"><img src="https://avatars.githubusercontent.com/u/84266499?v=4" width="100px;" alt=""/><br /><sub><b>갑경</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/1" /></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/JoYunHyeok"><img src="https://avatars.githubusercontent.com/u/59010218?v=4" width="100px;" alt=""/><br /><sub><b>윤혁</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/10" /></sub></a><br /></td>
     <td align="center"><a href="https://github.com/daisy6365"><img src="https://avatars.githubusercontent.com/u/62869982?v=4" width="100px;" alt=""/><br /><sub><b>다빈</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
     <td align="center"><a href="https://github.com/choiswonspec"><img src="https://avatars.githubusercontent.com/u/52640957?v=4" width="100px;" alt=""/><br /><sub><b>승원</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/choiswonspec"><img src="https://avatars.githubusercontent.com/u/44187128?v=4" width="100px;" alt=""/><br /><sub><b>수경</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
   </tr>
   
 </table>
