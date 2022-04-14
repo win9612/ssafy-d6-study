@@ -1,174 +1,159 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_19238_스타트택시 {
-	static int N, M, energy, map[][], passenger[][], pIdx;
-	static boolean[] pVisited;
-	static int startRowMin = 0, startColMin = 0;
-	static int arriveRow = 0, arriveCol = 0;
+	static int N, M, energy, map[][], count;
 	static int[] di = { -1, 1, 0, 0 };
 	static int[] dj = { 0, 0, -1, 1 };
 	static Point taxi;
+	static Point[] destination;
 
-	static class Point {
-		int x, y, cnt;
+	static class Point implements Comparable<Point> {
+		int x, y;
 
-		public Point(int x, int y, int cnt) {
+		public Point(int x, int y) {
 			super();
 			this.x = x;
 			this.y = y;
-			this.cnt = cnt;
+		}
+
+		@Override
+		public int compareTo(Point o) {
+			if (this.x == o.x) {
+				return this.y - o.y;
+			} else {
+				return this.x - o.x;
+			}
 		}
 	}
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-		energy = Integer.parseInt(st.nextToken());
+
+		N = Integer.parseInt(st.nextToken()); // 행,열 크기
+		M = Integer.parseInt(st.nextToken()); // 승객 수
+		energy = Integer.parseInt(st.nextToken()); // 초기 연료
 
 		map = new int[N + 1][N + 1];
-
 		for (int i = 1; i <= N; i++) {
 			st = new StringTokenizer(br.readLine());
 			for (int j = 1; j <= N; j++) {
 				map[i][j] = Integer.parseInt(st.nextToken());
+				if (map[i][j] == 1) {
+					map[i][j] = -1;
+				}
 			}
 		}
 
-		st = new StringTokenizer(br.readLine()); // 택시 위치
-		taxi = new Point(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), energy);
+		st = new StringTokenizer(br.readLine());
+		// 택시 시작 위치
+		taxi = new Point(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
 
-		passenger = new int[M + 1][5]; // 승객 출발, 도착위치
-		pVisited = new boolean[M + 1];
+		destination = new Point[M + 1];
 		for (int i = 1; i <= M; i++) {
 			st = new StringTokenizer(br.readLine());
-			for (int j = 1; j <= 4; j++) {
-				passenger[i][j] = Integer.parseInt(st.nextToken());
-			}
+			int s_x = Integer.parseInt(st.nextToken());
+			int s_y = Integer.parseInt(st.nextToken());
+			map[s_x][s_y] = i; // 승객의 출발지 위치의 승객 번호 지정
+			int d_x = Integer.parseInt(st.nextToken());
+			int d_y = Integer.parseInt(st.nextToken());
+			destination[i] = new Point(d_x, d_y); // 승객 도착지
 		}
 
-		int ans = -1; // 연료 바닥나거나 출발지나 목적지로 이동 못할 때
-		for (int m = 1; m <= M; m++) {
-			// 현재 택시 위치에서 가장 가까운 승객 찾기
-			minDistance(taxi);
-
-			// 택시 위치에서 최단 거리 승객 출발지로 이동 하기
-			int count = bfs(startRowMin, startColMin);
-			if (count != -1) {
-				energy -= count;
-				list.add(pIdx);
-
-				// 승객 출발지에서 승객 도착지로 이동 하기
-				count = bfs(arriveRow, arriveCol);
-				if (count != -1) {
-					energy = energy - count + (count * 2);
-					for (Integer i : list) {
-						if (i == pIdx) {
-							list.remove(i);
-							pVisited[i] = true; // 이미 방문한 승객 처리
-							break;
-						}
-					}
-					ans = energy;
-				} else {
-					System.out.println(-1);
-					return;
-				}
-//				if (!list.isEmpty()) {
-//					ans = -1;
-//				}
-			} else {
+		for (int i = 0; i < M; i++) {
+			int pNo = findPassenger(taxi); // 승객의 번호
+			energy -= count; // 움직인 거리 빼주기
+			if (pNo == -1 || energy <= 0) { // 승객 번호가 -1이거나 연료가 없다면 리턴
+				System.out.println(-1);
+				return;
+			}
+			int use = go(taxi, pNo); // 목적지로 간다, 목적지로 가는 거리
+			if (energy < use || use == -1) { // 현재 있는 연료보다 거리가 더 크면 갈수없음 or 아예 목적지에 갈 수 없음
 				System.out.println(-1);
 				return;
 			}
 
+			energy += use; // 움직인 거리만큼 더해주기
+			map[taxi.x][taxi.y] = 0; // 해당 택시 위치 값 0으로 갱신
+			taxi = destination[pNo]; // 택시 위치 도착지로 갱신
 		}
-		System.out.println(ans);
+		System.out.println(energy);
 	}
 
-	static ArrayList<Integer> list = new ArrayList<Integer>();
-
-	public static int bfs(int r, int c) {
+	public static int go(Point taxi, int pNo) {
 		Queue<Point> queue = new LinkedList<Point>();
-		queue.offer(new Point(taxi.x, taxi.y, 0));
 		boolean[][] visited = new boolean[N + 1][N + 1];
 		visited[taxi.x][taxi.y] = true;
+		queue.offer(taxi);
 
+		count = 0;
 		while (!queue.isEmpty()) {
-			Point now = queue.poll();
+			int size = queue.size();
+			for (int s = 0; s < size; s++) {
+				Point p = queue.poll();
 
-			if (energy - now.cnt < 0) { // 연료가 0보다 작으면 리턴
-				return -1;
-			}
-
-			if (now.x == r && now.y == c) {
-				taxi = new Point(r, c, 0); // 택시 위치 갱신
-				return now.cnt;
-			}
-
-			for (int d = 0; d < 4; d++) {
-				int nexti = now.x + di[d];
-				int nextj = now.y + dj[d];
-				if (nexti >= 1 && nexti <= N && nextj >= 1 && nextj <= N && !visited[nexti][nextj]
-						&& map[nexti][nextj] != 1) {
-					queue.offer(new Point(nexti, nextj, now.cnt + 1));
-					visited[nexti][nextj] = true;
+				if (p.x == destination[pNo].x && p.y == destination[pNo].y) { // 목적지에 도착했으면 거리 리턴
+					return count;
 				}
-			}
-		}
-		return -1;
-	}
 
-	public static void minDistance(Point taxi) {
-		int min = 987654321;
-		pIdx = 0;
-
-		for (int i = 1; i <= M; i++) { // 최단 거리 비교
-			int absX = Math.abs(passenger[i][1] - taxi.x);
-			int absY = Math.abs(passenger[i][2] - taxi.y);
-			if (!pVisited[i]) { // 방문하지 않은 승객들만 비교
-				if (min > absX + absY) {
-					min = absX + absY;
-					startRowMin = passenger[i][1];
-					startColMin = passenger[i][2];
-					arriveRow = passenger[i][3];
-					arriveCol = passenger[i][4];
-					pIdx = i;
-				} else if (min == absX + absY) { // 만약 최단거리가 같으면
-					if (startRowMin > passenger[i][1]) { // 행 번호 더 작은 걸로
-						startRowMin = passenger[i][1];
-						startColMin = passenger[i][2];
-						arriveRow = passenger[i][3];
-						arriveCol = passenger[i][4];
-						pIdx = i;
-					} else if (startRowMin == i) { // 행번호도 같으면 열 번호 작은걸로
-						if (startColMin > passenger[i][2]) {
-							startRowMin = passenger[i][1];
-							startColMin = passenger[i][2];
-							arriveRow = passenger[i][3];
-							arriveCol = passenger[i][4];
-							pIdx = i;
-						}
+				for (int d = 0; d < 4; d++) {
+					int nexti = p.x + di[d];
+					int nextj = p.y + dj[d];
+					if (nexti >= 1 && nexti <= N && nextj >= 1 && nextj <= N && !visited[nexti][nextj]
+							&& map[nexti][nextj] >= 0) {
+						queue.offer(new Point(nexti, nextj));
+						visited[nexti][nextj] = true;
 					}
 				}
 			}
+			count++;
 		}
+
+		return -1; // 갈수 없으면
 	}
 
-	public static void print(int[][] map) {
-		for (int[] mm : map) {
-			for (int m : mm) {
-				System.out.print(m + " ");
-			}
-			System.out.println();
+	public static int findPassenger(Point now) { // 승객 찾기
+		Queue<Point> queue = new LinkedList<Point>();
+		PriorityQueue<Point> pqueue = new PriorityQueue<Point>(); // 승객 담을 pq
+		boolean[][] visited = new boolean[N + 1][N + 1];
+		queue.offer(taxi);
+		visited[taxi.x][taxi.y] = true;
+
+		count = 0; // 탐색 거리
+		if (map[now.x][now.y] > 0) { // 현재 택시 위치에 승객이 있다면
+			return map[now.x][now.y];
 		}
+		while (!queue.isEmpty()) {
+			int size = queue.size();
+			for (int s = 0; s < size; s++) {
+				Point p = queue.poll();
+
+				for (int d = 0; d < 4; d++) {
+					int nexti = p.x + di[d];
+					int nextj = p.y + dj[d];
+					if (nexti >= 1 && nexti <= N && nextj >= 1 && nextj <= N && !visited[nexti][nextj]
+							&& map[nexti][nextj] >= 0) {
+						if (map[nexti][nextj] > 0) {
+							pqueue.offer(new Point(nexti, nextj));
+						}
+						queue.offer(new Point(nexti, nextj));
+						visited[nexti][nextj] = true;
+					}
+				}
+			}
+			count++; // 거리 증가
+			if (!pqueue.isEmpty()) { // 같은 거리 탐색이 끝나면 손님이 있는지 확인
+				taxi = pqueue.poll(); // 있으면 택시 위치 갱신
+				return map[taxi.x][taxi.y];
+			}
+		}
+		return -1; // 손님 찾을 수 없을 때
 	}
+
 }
