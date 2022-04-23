@@ -33,53 +33,25 @@ public class BOJ_20056_마법사상어와파이어볼2 {
 			map[y][x][0]++;
 			map[y][x][1] += m;
 			map[y][x][2] += s;
-			map[y][x][5] = dir;
+			map[y][x][5] += dir;
 			
 			if(dir%2==0) map[y][x][3]++; // 짝수
 			else map[y][x][4]++; // 홀수
 			
-			
 			q.offer(new Point(y, x, m, s, dir));
 		}
 		
-		
-//		for(int i=0; i<N; i++) {
-//			for(int j=0; j<N; j++) {
-//				System.out.print(map[i][j][0] + " ");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println("=============");
-	
 		while(K-- > 0) {
-			
 			move();
-//			for(int i=0; i<N; i++) {
-//				for(int j=0; j<N; j++) {
-//					System.out.print(map[i][j][0] + " ");
-//				}
-//				System.out.println();
-//			}
-//			System.out.println("move after=============");
 			divide();
-//			for(int i=0; i<N; i++) {
-//				for(int j=0; j<N; j++) {
-//					System.out.print(map[i][j][0] + " ");
-//				}
-//				System.out.println();
-//			}
-//			System.out.println("divide after=============");
 		}
-		
 		resultPrint();
-		
 	}
 
 	private static void resultPrint() {
 		int ans = 0;
 		for(int i=0; i<N; i++) {
 			for(int j=0; j<N; j++) {
-				if(map[i][j][1]==0) continue;
 				ans += map[i][j][1];
 			}
 		}
@@ -100,74 +72,53 @@ public class BOJ_20056_마법사상어와파이어볼2 {
 
 	private static void fireDivide(int i, int j) {
 		int size = map[i][j][0]; // 개수
-		int mSum = map[i][j][1]; // 질량의 합
-		int speadSum = map[i][j][2]; //속도의 합
+		int mSum = map[i][j][1]/5; // 질량의 합
+		int speadSum = map[i][j][2]/size; //속도의 합
 		int even = map[i][j][3]; // 짝수
 		int odd = map[i][j][4]; // 홀수
-//		System.out.println(size + " : " + mSum + " : " + speadSum + " : " + even + " : " + odd );
-		mSum /= 5;
-		speadSum /= size;
 		
 		if(mSum != 0) {		
 			map[i][j][0] = 4;	
 			map[i][j][1] = mSum * 4;
-			map[i][j][2] = speadSum;
-			
-			if(even == size || odd == size) {
-				for(int f=0; f<4; f++) {
-					q.offer(new Point(i, j, mSum, speadSum, (f*2)));
-					map[i][j][5] = (f*2);
-				}
-				map[i][j][3] = 4;
-				map[i][j][4] = 0;
-			}else {
-				for(int f=0; f<4; f++) {
-					q.offer(new Point(i, j, mSum, speadSum, (f*2)+1));
-					map[i][j][5] = (f*2)+1;
-				}
-				map[i][j][3] = 0;
-				map[i][j][4] = 4;
-			}
-			
-//			System.out.println(map[i][j][0] + " : " + map[i][j][1] + " : " + map[i][j][2] + " : " + map[i][j][3] + " : " + map[i][j][4] );
-		}else {
-			map[i][j][0] = 0;
-			map[i][j][1] = 0; // 만약에 질량의 합/5가 0이 된다면
-			map[i][j][2] = 0;
-			map[i][j][3] = 0;
-			map[i][j][4] = 0;
+			map[i][j][2] = speadSum*4;
 			map[i][j][5] = 0;
+			
+			for (int f = 0; f < 4; f++) {
+                q.offer(new Point(i, j, mSum, speadSum, (f * 2 + ((even == size || odd == size) ? 0 : 1) )));
+            }
+            map[i][j][3] = (even == size || odd == size) ? 4 : 0;
+            map[i][j][4] = 4 - map[i][j][3];
+			
+		}else {
+			for(int k=0; k<=5; k++) { // 초기화
+				map[i][j][k] = 0;
+			}
 		}
 	}
 
 	private static void move() {
 		int size = q.size();
-		for(int s=0; s<size; s++) {
+		while(!q.isEmpty()) {
 			Point point = q.poll();
-//			System.out.println(point.y + " : " + point.x + " : " + point.dir);
 			map[point.y][point.x][0]--;
 			map[point.y][point.x][1] -= point.m;
 			map[point.y][point.x][2] -= point.s;
-			
+			map[point.y][point.x][5] -= point.dir; 
 			
 			if(point.dir%2==0) map[point.y][point.x][3]--; // 짝수
 			else map[point.y][point.x][4]--; // 홀수
 			
-			
 			int y = (point.y + dy[point.dir]*point.s + N*1000)%N;
 			int x = (point.x + dx[point.dir]*point.s + N*1000)%N;
-			
 			
 			map[y][x][0]++;
 			map[y][x][1] += point.m;
 			map[y][x][2] += point.s;
-			map[y][x][5] = point.dir;
+			map[y][x][5] += point.dir;
+			
 			if(point.dir%2==0) map[y][x][3]++; // 짝수
 			else map[y][x][4]++; // 홀수
 			
-//			if(map[y][x][0] == 1) {
-//				q.offer(new Point(y, x, point.m, point.s, point.dir));
-//			}
 		}
 	}
 
