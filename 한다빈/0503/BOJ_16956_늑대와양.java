@@ -24,23 +24,19 @@ public class BOJ_16956_늑대와양 {
                 map[i][j]= s.charAt(j);
             }
         }
-
         for (int i = 0; i < R; i++) {
             for (int j = 0; j < C; j++) {
                 if (map[i][j] == 'W') {
-                    if (map[i][j]=='W') {
-                        for (int d = 0; d < 4; d++) {
-                            int nr = i + di[d];
-                            int nc = j + dj[d];
-
-                            if (!(nr>=0 && nr<R && nc>=0 && nc<C)) continue;
-                            if (map[nr][nc]=='.') {
-                                map[nr][nc]='D';
-                            }
-                            if (map[nr][nc]=='S') {
-                                System.out.println("0");
-                                System.exit(0);
-                            }
+                    for (int d = 0; d < 4; d++) {
+                        int nr = i + di[d];
+                        int nc = j + dj[d];
+                        if (!(nr>=0 && nr<R && nc>=0 && nc<C)) continue;
+                        if (map[nr][nc]=='.') {
+                            map[nr][nc]='D';
+                        }
+                        if (map[nr][nc]=='S') {
+                            System.out.println("0");
+                            System.exit(0);
                         }
                     }
                 }
