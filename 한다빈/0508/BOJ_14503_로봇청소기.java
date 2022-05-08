@@ -11,7 +11,6 @@ public class BOJ_14503_로봇청소기 {
     static int[][] map;
     static boolean[][] visited;
     static int count;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine()," ");
