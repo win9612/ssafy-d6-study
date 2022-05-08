@@ -83,7 +83,7 @@ https://oil-liquid-bef.notion.site/aecf35182a1c45158727e0894069c679
     <td align="center"><a href="https://github.com/JoYunHyeok"><img src="https://avatars.githubusercontent.com/u/59010218?v=4" width="100px;" alt=""/><br /><sub><b>윤혁</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/10" /></sub></a><br /></td>
     <td align="center"><a href="https://github.com/daisy6365"><img src="https://avatars.githubusercontent.com/u/62869982?v=4" width="100px;" alt=""/><br /><sub><b>다빈</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
     <td align="center"><a href="https://github.com/choiswonspec"><img src="https://avatars.githubusercontent.com/u/52640957?v=4" width="100px;" alt=""/><br /><sub><b>승원</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/choiswonspec"><img src="https://avatars.githubusercontent.com/u/44187128?v=4" width="100px;" alt=""/><br /><sub><b>수경</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/sukyung99"><img src="https://avatars.githubusercontent.com/u/44187128?v=4" width="100px;" alt=""/><br /><sub><b>수경</b><br><img src="https://us-central1-progress-markdown.cloudfunctions.net/progress/0" /></sub></a><br /></td>
   </tr>
   
 </table>
